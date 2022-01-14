@@ -1,0 +1,45 @@
+
+<div class="example-loading-shade-2 d-flex justify-content-center" *ngIf="isLoading">
+    <mat-spinner class="center-mat-spinner" style="color: darkblue;"></mat-spinner>
+</div> 
+
+
+<div class="card-body" style="align-items: center;" *ngIf="!isLoading">
+
+    <h4 class="mt-2" style="font-weight: bold">Retiros/Depositos a cuenta: {{ this.cuentaBancaria.numeroCuenta }}</h4>
+    <form [formGroup]="depositForm">
+        <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="NumeroCuenta">Numero de Cuenta</label>
+                <input type="text" class="form-control" id="NumeroCuenta" name="NumeroCuenta"
+                    name="NumeroCuenta" formControlName="NumeroCuenta">
+              </div>
+            </div>
+             
+
+            <div class="col-md-3">
+                <div class="form-group">
+                  <label for="IdTipoAccion">Tipo de acción</label>
+                  <select class="custom-select" formControlName="IdTipoAccion">
+                    <option *ngFor="let accion of comboxTipoAccion" [ngValue]="accion.Id">
+                        {{ accion.Descripcion }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="monto">Monto</label>
+                  <input type="number" class="form-control" id="Monto" name="Monto"
+                    name="Monto" formControlName="Monto">
+                </div>
+              </div>
+        </div>
+    
+    </form>
+
+    <button [disabled]="!this.depositForm.valid" (click)="onSave()"  type="button" class="btn btn-primary btn-lg btn-block">Guardar</button>
+</div>
+
