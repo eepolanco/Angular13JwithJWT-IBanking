@@ -1,0 +1,48 @@
+
+<div class="example-loading-shade-2 d-flex justify-content-center" *ngIf="isLoading">
+    <mat-spinner class="center-mat-spinner" style="color: darkblue;"></mat-spinner>
+</div> 
+
+
+<div class="card-body" style="align-items: center;" *ngIf="!isLoading">
+
+    <h4 class="mt-2" style="font-weight: bold">Registrar nueva Transferencia</h4>
+    <form [formGroup]="transferForm">
+        <div class="row">           
+
+            <div class="col-md-3">
+                <div class="form-group">
+                  <label for="NumeroCuentaOrigen">Numero Cuenta Origen</label>
+                  <select class="custom-select" formControlName="NumeroCuentaOrigen">
+                    <option *ngFor="let cuenta of cuentasBancarias" [ngValue]="cuenta.numeroCuenta">
+                        {{ cuenta.numeroCuenta }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="NumeroCuentaDestino">Numero Cuenta Destino</label>
+                  <select class="custom-select" formControlName="NumeroCuentaDestino">
+                    <option *ngFor="let cuenta of cuentasBancarias" [ngValue]="cuenta.numeroCuenta">
+                        {{ cuenta.numeroCuenta }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="monto">Monto Transacción</label>
+                  <input type="number" class="form-control" id="MontoTransaccion" name="MontoTransaccion"
+                    name="MontoTransaccion" formControlName="MontoTransaccion">
+                </div>
+              </div>
+        </div>
+    
+    </form>
+
+    <button [disabled]="!this.transferForm.valid" (click)="onSave()"  type="button" class="btn btn-primary btn-lg btn-block">Guardar</button>
+</div>
+
